@@ -17,7 +17,7 @@ def imgDisplay():
 
     the_url = url_for('static', filename='picture_out.png')
     print(the_url)
-    return """<img style="width:90%;height:90%"src="{url}"/>""".format(url=the_url)
+    return """<img style="height:100%"src="{url}"/>""".format(url=the_url)
 
 
 @app.route('/hello')

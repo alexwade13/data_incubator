@@ -1,23 +1,23 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, url_for
 from datetime import datetime
+
+import base64
 app = Flask(__name__)
 
 @app.route('/img/', methods=['POST','GET'])
 
 def imgDisplay():
     print(request.files['picture'],"TESTSTS")
+    print(app.static_url_path)
     image = request.files['picture'].read()
-    
-    return """
-    <h1>Hello heroku</h1>
-    <body cz-shortcut-listen="true">
-        <h1> Automatically deployed! </h1>
-        test
-        <img src="{image}"/>
-    </body>
-    
+    the_baseSixtyFour = base64.b64encode(image)
+    the_t = "test"    
+    with open('static/picture_out.png', 'wb') as f:
+      f.write(image)
 
-    """
+    the_url = url_for('static', filename='picture_out.png')
+    print(the_url)
+    return """<img style="width:90%;height:90%"src="{url}"/>""".format(url=the_url)
 
 
 @app.route('/hello')

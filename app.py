@@ -26,7 +26,6 @@ def hellodd():
 
 @app.route('/')
 def homepage():
-    the_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")
 
     return """
     <h1>Hello heroku</h1>
@@ -38,9 +37,8 @@ def homepage():
         </form>
     
     </body>
-    <p>It is currently {time}.</p>
 
-    """.format(time=the_time)
+    """
 
 if __name__ == '__main__':
     app.run(debug=True, use_reloader=True)
